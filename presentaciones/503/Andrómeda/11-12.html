@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentación: Consultar una tabla y Agrupar filas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/theme/white.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Presentación: Consultar una tabla y Agrupar filas</h1>
+        </section>
+
+        <section>
+            <h2>Tema: Consultar una tabla</h2>
+            <p><strong>Descripción:</strong> Consultar una tabla se refiere al proceso de recuperar datos almacenados en una tabla de una base de datos o de un DataFrame en un lenguaje de programación como Python. Esto implica seleccionar, filtrar y mostrar datos específicos según ciertos criterios. En Python, bibliotecas como pandas proporcionan funciones y métodos para realizar consultas en DataFrames, permitiendo operaciones como seleccionar columnas específicas, filtrar filas basadas en condiciones y realizar cálculos sobre los datos.</p>
+        </section>
+
+        <section>
+            <h3>Ejemplo de consulta de tabla usando pandas:</h3>
+            <pre><code>import pandas as pd
+
+# Crear un DataFrame de ejemplo
+data = {'Nombre': ['Juan', 'María', 'Pedro', 'María', 'Juan'],
+        'Edad': [25, 30, 35, 30, 25],
+        'Puntuación': [80, 90, 75, 85, 95]}
+df = pd.DataFrame(data)
+
+# Consultar la tabla
+print("Tabla original:")
+print(df)
+
+# Filtrar filas basadas en ciertos criterios
+print("\nFiltrar filas donde la edad sea mayor que 25:")
+print(df[df['Edad'] > 25])
+
+# Seleccionar columnas específicas
+print("\nSeleccionar solo las columnas 'Nombre' y 'Puntuación':")
+print(df[['Nombre', 'Puntuación']])
+
+# Realizar cálculos sobre los datos
+print("\nCalcular la media de la puntuación:")
+print(df['Puntuación'].mean())
+</code></pre>
+        </section>
+
+        <section>
+            <h2>Tema: Agrupar filas</h2>
+            <p><strong>Descripción:</strong> Agrupar filas implica organizar datos en conjuntos basados en valores comunes en una o más columnas. Esto es útil para resumir y analizar datos, especialmente cuando se trabaja con conjuntos de datos grandes. En Python, la función <code>groupby()</code> de la biblioteca pandas se utiliza para agrupar filas en un DataFrame según los valores de una o más columnas. Después de agrupar, es común realizar operaciones de agregación, como calcular la suma, la media o el recuento de valores dentro de cada grupo.</p>
+        </section>
+
+        <section>
+            <h3>Ejemplo de agrupación de filas usando pandas:</h3>
+            <pre><code># Agrupar filas por el nombre y calcular la media de la edad y la puntuación
+df_agrupado = df.groupby('Nombre').agg({'Edad': 'mean', 'Puntuación': 'mean'}).reset_index()
+
+# Mostrar la tabla agrupada
+print("\nTabla agrupada por nombre con la media de edad y puntuación:")
+print(df_agrupado)
+
+# Guardar el DataFrame agrupado en un archivo CSV
+df_agrupado.to_csv('tabla_agrupada.csv', index=False)
+print("\nArchivo 'tabla_agrupada.csv' guardado con éxito.")
+</code></pre>
+        </section>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.js"></script>
+<script>
+    Reveal.initialize();
+</script>
+</body>
+</html>
